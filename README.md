@@ -225,7 +225,9 @@ n/a
 
 ### Executing program
 
-n/a
+1. Go to the root directory
+2. Follow the following path: Asteroids -> Build -> Windows -> x86
+3. Run the **Asteroids** application
 
 ## Help
 
