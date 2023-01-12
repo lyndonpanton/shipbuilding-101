@@ -54,8 +54,10 @@ Here are the rubrics we used in previous versions of the course to confirm that 
 
 5. The ship screen wraps properly. Wrapping should work correctly for the left, right, top, and bottom sides as well as all four corners. 
 
-Detailed Instructions
+## Detailed Instructions
+
 Overview
+
 In this project (the first increment of our Asteroids game development), you're building the Unity
 project and adding the player ship to the game.
 Step 1: Create the Unity project
