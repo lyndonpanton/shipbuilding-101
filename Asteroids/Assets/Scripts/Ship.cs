@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +14,7 @@ public class Ship : MonoBehaviour
 
     Vector2 thrustDirection = new Vector2(1, 0);
     const float ThrustForce = 5;
+    const float RotateDegreesPerSecond = 135;
 
     // Start is called before the first frame update
     void Start()
@@ -26,15 +28,28 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float rotationAmount;
+        float isRotating = Input.GetAxis("Rotate");
+
+        if (isRotating != 0)
+        {
+            rotationAmount = RotateDegreesPerSecond * Time.deltaTime;
+
+            if (isRotating < 0)
+            {
+                rotationAmount *= -1;
+            }
+
+            transform.Rotate(Vector3.forward, rotationAmount);
+        }
     }
 
     // FixedUpdate is for physics-based actions
     void FixedUpdate()
     {
-        float input = Input.GetAxis("Thrust");
+        float isThrusting = Input.GetAxis("Thrust");
 
-        if (input != 0)
+        if (isThrusting != 0)
         {
             rb2d.AddForce(
                 ThrustForce * thrustDirection,
