@@ -9,6 +9,8 @@ public class Ship : MonoBehaviour
 {
     Rigidbody2D rb2d;
 
+    float radius;
+
     Vector2 thrustDirection = new Vector2(1, 0);
     const float ThrustForce = 5;
 
@@ -16,6 +18,9 @@ public class Ship : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        radius = GetComponent<CircleCollider2D>().radius;
+
+        Debug.Log(ScreenUtils.ScreenLeft+ " " + ScreenUtils.ScreenRight);
     }
 
     // Update is called once per frame
@@ -36,5 +41,28 @@ public class Ship : MonoBehaviour
                 ForceMode2D.Force
             );
         }
+    }
+
+    void OnBecameInvisible()
+    {
+        Vector2 position = transform.position;
+
+        if (position.x >= ScreenUtils.ScreenRight)
+        {
+            position.x = ScreenUtils.ScreenLeft;
+        } else if (position.x <= ScreenUtils.ScreenLeft)
+        {
+            position.x = ScreenUtils.ScreenRight;
+        }
+
+        if (position.y >= ScreenUtils.ScreenTop)
+        {
+            position.y = ScreenUtils.ScreenBottom;
+        } else if (position.y <= ScreenUtils.ScreenBottom)
+        {
+            position.y = ScreenUtils.ScreenTop;
+        }
+
+        transform.position = position;
     }
 }
