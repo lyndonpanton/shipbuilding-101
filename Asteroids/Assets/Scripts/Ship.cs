@@ -28,7 +28,7 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rotationAmount;
+        float rotationAmount = 0;
         float isRotating = Input.GetAxis("Rotate");
 
         if (isRotating != 0)
@@ -39,6 +39,14 @@ public class Ship : MonoBehaviour
             {
                 rotationAmount *= -1;
             }
+
+            Vector3 eulerAngles = transform.eulerAngles;
+            float zRotation = Mathf.Deg2Rad * eulerAngles.z;
+
+            thrustDirection = new Vector2(
+                Mathf.Cos(zRotation),
+                Mathf.Sin(zRotation)
+            );
 
             transform.Rotate(Vector3.forward, rotationAmount);
         }
